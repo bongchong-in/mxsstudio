@@ -9,16 +9,16 @@ interface GalleryCardProps {
   title: string;
   author: string;
   role: string;
-  code: React.ReactNode;
   colorClass: string;
   image?: string;
+  url?: string;
 }
 
 // Subcomponents
 const GalleryCard: React.FC<GalleryCardProps> = ({ 
-  title, author, role, code, colorClass, image 
+  title, author, role, colorClass, image, url 
 }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!cardRef.current) return;
@@ -47,36 +47,59 @@ const GalleryCard: React.FC<GalleryCardProps> = ({
     });
   };
 
+  // Dynamically choose tag based on URL presence
+  const Tag = url ? 'a' : 'div';
+  const linkProps = url ? { href: url, target: "_blank", rel: "noopener noreferrer" } : {};
+
   return (
-    <div 
-      ref={cardRef}
+    <Tag 
+      {...linkProps}
+      ref={cardRef as any}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="gallery-card relative w-[300px] h-[450px] md:w-[400px] md:h-[600px] max-h-[70vh] bg-white/5 border border-white/10 hover-trigger group transform-style-3d flex-shrink-0"
+      className={`gallery-card relative w-[300px] h-[450px] md:w-[400px] md:h-[600px] max-h-[70vh] bg-white/5 border border-white/10 hover-trigger group transform-style-3d flex-shrink-0 flex flex-col justify-between overflow-hidden ${url ? 'cursor-pointer' : 'cursor-default'}`}
     >
-      <div className="visual-view absolute inset-0 p-8 flex flex-col justify-between z-10 transition-opacity duration-500 group-hover:opacity-20">
-        <div className="w-full h-2/3 bg-black/50 relative overflow-hidden border border-white/5">
-          {image ? (
-            <img 
-              src={image} 
-              alt={title} 
-              className="absolute inset-0 w-full h-full object-cover grayscale opacity-80 transition-transform duration-700 group-hover:scale-105" 
-            />
-          ) : null}
-          <div className="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-[1px]">
-            <span className="font-serif italic text-2xl text-white/90 drop-shadow-lg text-center px-4">{title}</span>
-          </div>
+      {/* Background Image & Overlay */}
+      <div className="absolute inset-0 z-0 bg-black">
+        {image ? (
+          <img 
+            src={image} 
+            alt={title} 
+            className="absolute inset-0 w-full h-full object-cover grayscale opacity-60 transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-80" 
+          />
+        ) : null}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 p-8 flex flex-col h-full justify-between">
+        
+        {/* Top: Title/Status */}
+        <div className="transform translate-y-0 transition-transform duration-500">
+           <div className="flex justify-between items-start">
+              <h3 className="font-serif italic text-2xl md:text-3xl text-white/90 drop-shadow-lg leading-tight max-w-[80%]">
+                {title}
+              </h3>
+              {url && (
+                <div className="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 -rotate-45 group-hover:rotate-0">
+                  <span className="text-gold text-lg leading-none">↗</span>
+                </div>
+              )}
+           </div>
         </div>
-        <div className="text-left">
-          <p className="font-serif text-xl text-paper">{author}</p>
-          <p className="font-mono text-xs text-code mt-2">{role}</p>
+
+        {/* Bottom: Author Info */}
+        <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+          <div className="w-12 h-[1px] bg-gold mb-4 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 delay-100" />
+          <p className="font-serif text-xl text-paper group-hover:text-gold transition-colors">{author}</p>
+          <p className={`font-mono text-xs mt-1 ${colorClass} uppercase tracking-wider`}>{role}</p>
+          
+          {!url && (
+            <p className="font-mono text-[10px] text-white/30 mt-4 uppercase tracking-widest">In Progress</p>
+          )}
         </div>
       </div>
-      
-      <div className={`x-ray-view absolute inset-0 z-0 p-6 font-mono text-[10px] ${colorClass} opacity-0 group-hover:opacity-100 transition-opacity duration-500 overflow-hidden leading-tight bg-[#0a0a0a]`}>
-        {code}
-      </div>
-    </div>
+    </Tag>
   );
 };
 
@@ -99,6 +122,14 @@ const Gallery: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [modalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (modalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [modalOpen]);
 
   useEffect(() => {
     const wrapper = wrapperRef.current;
@@ -178,7 +209,10 @@ const Gallery: React.FC = () => {
             </button>
           </div>
 
-          <div className="flex-grow overflow-y-auto p-6 md:p-12 bg-void/50">
+          <div 
+            className="flex-grow overflow-y-auto p-6 md:p-12 bg-void/50 overscroll-contain"
+            data-lenis-prevent
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8 md:gap-16 place-items-center">
               {SITE_CONTENT.gallery.archiveModal.items.map((item, i) => (
                 <GalleryCard key={`archive-${i}`} {...item} />

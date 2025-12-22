@@ -57,7 +57,27 @@ export const COUNTRIES = [
 export const SITE_CONTENT = {
   general: {
     brandName: "MxS STUDIO",
-    brandSub: "Madhushree x Sumontro",
+    brandSub: (
+      <>
+        <a 
+          href="https://www.instagram.com/madhushree_chakrabarty/" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="hover:text-void border-b border-transparent hover:border-void/50 transition-all duration-300"
+        >
+          Madhushree
+        </a>
+        {" x "}
+        <a 
+          href="https://www.instagram.com/csumontro/" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="hover:text-void border-b border-transparent hover:border-void/50 transition-all duration-300"
+        >
+          Sumontro
+        </a>
+      </>
+    ),
     version: "v1.2",
     logo: "MxS"
   },
@@ -120,47 +140,23 @@ export const SITE_CONTENT = {
         role: "Writer & Thinker",
         colorClass: "text-emerald-500",
         image: "https://raw.githubusercontent.com/bongchong-in/mxsstudio/refs/heads/main/images/aulpogolpo.jpg",
-        code: (
-          <>
-            &lt;div class="hero"&gt;<br/>
-            &nbsp;&nbsp;&lt;h1&gt;Poetry in Code&lt;/h1&gt;<br/>
-            &nbsp;&nbsp;&lt;nav&gt;...&lt;/nav&gt;<br/>
-            &lt;/div&gt;<br/><br/>
-            // Tailwind Config<br/>
-            bg-slate-900 text-slate-50
-          </>
-        )
+        url: "https://aulpogolpo.edgentiq.com/"
       },
       {
-        title: "Caught by Foods and Plants",
+        title: "Garden SuperMom",
         author: "Paromita",
         role: "Cook and Gardener",
         colorClass: "text-sky-500",
         image: "https://raw.githubusercontent.com/bongchong-in/mxsstudio/refs/heads/main/images/cbfp.jpg",
-        code: (
-          <>
-            &lt;section id="booking"&gt;<br/>
-            &nbsp;&nbsp;&lt;a href="wa.me/..."&gt;<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;Book Session<br/>
-            &nbsp;&nbsp;&lt;/a&gt;<br/>
-            // Zero latency
-          </>
-        )
+        url: "https://paromita.edgentiq.com/"
       },
       {
         title: "Sonic Architect",
-        author: "Rohan D.",
+        author: "Rohan",
         role: "Sound Designer",
         colorClass: "text-rose-500",
-        image: "https://images.unsplash.com/photo-1615714264626-ee30623d5d79?q=80&w=800&auto=format&fit=crop",
-        code: (
-          <>
-            &lt;audio src="mix.mp3"&gt;<br/>
-            &nbsp;&nbsp;&lt;track kind="captions"&gt;<br/>
-            &lt;/audio&gt;<br/>
-            // Audio API
-          </>
-        )
+        image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=800&auto=format&fit=crop",
+        url: ""
       }
     ],
     archiveCard: {
@@ -169,56 +165,33 @@ export const SITE_CONTENT = {
     },
     archiveModal: {
       title: "The Extended Archive",
-      subtitle: "Selected Works 2023-2024",
+      subtitle: "Selected Works 2025",
       closeText: "Close Archive",
       endText: "End of Public Records",
       items: [
         {
           title: "Neon Drift",
-          author: "Alex M.",
+          author: "Alex",
           role: "Visual Artist",
           colorClass: "text-purple-500",
           image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop",
-          code: (
-            <>
-              &lt;canvas id="gl"&gt;<br/>
-              &nbsp;&nbsp;initShader(vert, frag);<br/>
-              &nbsp;&nbsp;renderLoop();<br/>
-              &lt;/canvas&gt;<br/>
-              // WebGL Core
-            </>
-          )
+          url: ""
         },
         {
           title: "Silent Lens",
-          author: "Sarah J.",
+          author: "Sayan",
           role: "Photographer",
           colorClass: "text-neutral-400",
           image: "https://images.unsplash.com/photo-1617005082133-548c4dd27f35?q=80&w=800&auto=format&fit=crop",
-          code: (
-            <>
-              &lt;gallery mode="lightbox"&gt;<br/>
-              &nbsp;&nbsp;&lt;img src="raw.arw" /&gt;<br/>
-              &nbsp;&nbsp;&lt;meta iso="400" /&gt;<br/>
-              &lt;/gallery&gt;<br/>
-              // Color Grade: B&W
-            </>
-          )
+          url: ""
         },
         {
           title: "Echo Chamber",
-          author: "David L.",
+          author: "Mukta",
           role: "Podcaster",
           colorClass: "text-orange-500",
           image: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=800&auto=format&fit=crop",
-          code: (
-            <>
-              &lt;stream bitrate="320"&gt;<br/>
-              &nbsp;&nbsp;&lt;source src="rss.xml" /&gt;<br/>
-              &lt;/stream&gt;<br/>
-              // Audio Workstation
-            </>
-          )
+          url: ""
         },
         {
           title: "Type Foundry",
@@ -226,15 +199,7 @@ export const SITE_CONTENT = {
           role: "Typography Designer",
           colorClass: "text-yellow-200",
           image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop",
-          code: (
-            <>
-              @font-face &#123;<br/>
-              &nbsp;&nbsp;font-family: 'Neue';<br/>
-              &nbsp;&nbsp;src: url('neue.woff2');<br/>
-              &#125;<br/>
-              // Kerning: -0.05em
-            </>
-          )
+          url: ""
         }
       ]
     }
@@ -270,8 +235,8 @@ export const SITE_CONTENT = {
     subText: "Limited intake per cycle.",
     links: {
       concierge: { text: "Concierge", url: "https://wa.me/919007856326" },
-      instagram: { text: "Instagram", url: "#" },
-      email: { text: "Email", url: "#" }
+      instagram: { text: "Instagram", url: "https://www.instagram.com/mxsstudio.edgentiq/" },
+      email: { text: "Email", url: "mailto: mxsstudio.edgentiq@gmail.com" }
     },
     legalLinks: ["Privacy Protocol", "Terms of Residency", "Disclaimer"]
   },
