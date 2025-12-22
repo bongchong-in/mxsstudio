@@ -39,7 +39,8 @@ const Philosophy: React.FC = () => {
               className="flex flex-col md:flex-row items-center justify-between mb-16 md:mb-24 lg:mb-32"
             >
               {/* Layout varies based on index parity to alternate alignment */}
-              <div className={`md:w-1/2 md:pr-12 md:text-right pl-12 md:pl-0 mb-4 md:mb-0 ${!isEven ? 'order-2 md:order-1' : ''}`}>
+              {/* Left Column (Desktop) */}
+              <div className={`md:w-1/2 md:pr-12 md:text-right pl-12 md:pl-0 ${!isEven ? 'order-2 md:order-1' : 'mb-6 md:mb-0'}`}>
                 {!isEven ? (
                    <p className="font-mono text-xs text-code max-w-xs ml-auto">
                      {item.content}
@@ -49,7 +50,8 @@ const Philosophy: React.FC = () => {
                 )}
               </div>
 
-              <div className={`md:w-1/2 md:pl-12 pl-12 ${!isEven ? 'order-1 md:order-2' : ''}`}>
+              {/* Right Column (Desktop) */}
+              <div className={`md:w-1/2 md:pl-12 pl-12 ${!isEven ? 'order-1 md:order-2 mb-6 md:mb-0' : ''}`}>
                 {!isEven ? (
                     <h2 className={`text-3xl md:text-5xl font-serif ${item.highlight ? 'text-gold' : ''}`}>{item.title}</h2>
                 ) : (
