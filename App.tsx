@@ -23,8 +23,8 @@ const App: React.FC = () => {
   const [isLegalOpen, setIsLegalOpen] = useState(false);
   const lenisRef = useRef<Lenis | null>(null);
 
+  // Initialize Lenis
   useEffect(() => {
-    // Initialize Lenis Smooth Scroll
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -37,52 +37,49 @@ const App: React.FC = () => {
 
     lenisRef.current = lenis;
 
-    // Synchronize Lenis with ScrollTrigger
+    // Immediately stop scrolling while loading
+    lenis.stop();
+
+    // Synchronize with ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update);
 
-    // Use GSAP's ticker for the animation loop
-    // This ensures better synchronization between GSAP and Lenis
+    // Add Lenis to GSAP Ticker
     const update = (time: number) => {
       lenis.raf(time * 1000);
     };
 
     gsap.ticker.add(update);
-    gsap.ticker.lagSmoothing(0); // Prevent jumps during heavy loads
-
-    // Initial ScrollTrigger config
-    ScrollTrigger.defaults({
-      markers: false,
-    });
-
-    // Handle global resize
-    const handleResize = () => {
-      lenis.resize();
-      ScrollTrigger.refresh();
-    };
-    window.addEventListener('resize', handleResize);
+    gsap.ticker.lagSmoothing(0);
 
     return () => {
       gsap.ticker.remove(update);
-      window.removeEventListener('resize', handleResize);
       lenis.destroy();
     };
   }, []);
 
-  // When loading finishes, we need to refresh all scroll-based measurements
+  // Handle Loading State
   useEffect(() => {
-    if (!isLoading) {
-      // Small timeout to ensure DOM has settled after preloader is removed
-      const timer = setTimeout(() => {
-        if (lenisRef.current) {
-          lenisRef.current.resize();
-        }
-        ScrollTrigger.refresh();
-        // Force scroll to top on refresh/load
+    if (!isLoading && lenisRef.current) {
+      // Small delay to ensure DOM is painted before enabling scroll
+      setTimeout(() => {
         window.scrollTo(0, 0);
+        lenisRef.current?.start();
+        lenisRef.current?.resize();
+        ScrollTrigger.refresh();
       }, 100);
-      return () => clearTimeout(timer);
     }
   }, [isLoading]);
+
+  // Handle Legal Overlay
+  useEffect(() => {
+    if (lenisRef.current) {
+      if (isLegalOpen) {
+        lenisRef.current.stop();
+      } else if (!isLoading) {
+        lenisRef.current.start();
+      }
+    }
+  }, [isLegalOpen, isLoading]);
 
   return (
     <>
@@ -96,7 +93,8 @@ const App: React.FC = () => {
 
       <Navigation />
 
-      <main className={`w-full relative overflow-x-hidden ${isLoading ? 'h-screen overflow-hidden' : ''}`}>
+      {/* Main Container - removed manual overflow control to rely on body/Lenis */}
+      <main className="w-full relative">
         <Hero />
         <Philosophy />
         <Process />

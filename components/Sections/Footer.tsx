@@ -92,7 +92,7 @@ const Footer: React.FC<FooterProps> = ({ onOpenLegal }) => {
     }
   };
 
-  const handleFinalSubmit = () => {
+  const handleFinalSubmit = async () => {
     const newErrors: {email?: string, phone?: string, authorized?: string} = {};
     let isValid = true;
 
@@ -123,14 +123,42 @@ const Footer: React.FC<FooterProps> = ({ onOpenLegal }) => {
     setErrors(newErrors);
 
     if (isValid) {
-      // Success Animation before close
       const btn = document.getElementById('modal-submit-btn');
-      if (btn) btn.innerText = SITE_CONTENT.modal.successText;
       
-      setTimeout(() => {
-        setIsModalOpen(false);
-        setRequested(true);
-      }, 600);
+      try {
+        // UI Feedback: Transmitting
+        if (btn) btn.innerText = "TRANSMITTING...";
+
+        // Google Form Submission Logic
+        const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd0uTXvBkYY8iJmhvR6-9SzdV55yriZR12nzbQpPCHhIiHmoA/formResponse";
+        
+        const formData = new FormData();
+        formData.append('entry.316619129', handle); // Instagram Handle
+        formData.append('entry.2004379225', email); // Email
+        formData.append('entry.1663992994', `${countryCode} ${phone}`); // Mobile Number
+
+        // Submit to Google Forms (no-cors mode is required for client-side submission without proxy)
+        await fetch(GOOGLE_FORM_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: formData
+        });
+
+        // Success Animation before close
+        if (btn) btn.innerText = SITE_CONTENT.modal.successText;
+        
+        setTimeout(() => {
+            setIsModalOpen(false);
+            setRequested(true);
+        }, 600);
+
+      } catch (error) {
+        console.error("Transmission Error", error);
+        if (btn) btn.innerText = "ERROR - RETRY";
+        setTimeout(() => {
+            if (btn) btn.innerText = SITE_CONTENT.modal.submitText;
+        }, 2000);
+      }
     }
   };
 

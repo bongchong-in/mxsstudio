@@ -40,20 +40,38 @@
     </script>
 
     <style>
-        /* Base Reset */
-        html {
+        /* Base Reset & Scroll Architecture */
+        html, body {
             width: 100%;
             min-height: 100%;
-        }
-        
-        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll globally */
             background-color: #0a0a0a;
             color: #e0e0e0;
             cursor: none;
-            margin: 0;
-            width: 100%;
-            min-height: 100%;
             -webkit-font-smoothing: antialiased;
+        }
+
+        /* Lenis Recommended Overrides */
+        html.lenis, html.lenis body {
+            height: auto;
+        }
+
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+
+        .lenis.lenis-stopped {
+            overflow: hidden;
+        }
+
+        .lenis.lenis-scrolling iframe {
+            pointer-events: none;
         }
 
         /* Custom Scrollbar (Hidden) */
@@ -61,13 +79,6 @@
             width: 0px;
             background: transparent;
         }
-
-        /* Lenis Recommended Styles */
-        html.lenis { height: auto; }
-        .lenis.lenis-smooth { scroll-behavior: auto; }
-        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-        .lenis.lenis-stopped { overflow: hidden; }
-        .lenis.lenis-scrolling iframe { pointer-events: none; }
 
         /* Cursor Styles */
         #cursor-dot, #cursor-ring {
