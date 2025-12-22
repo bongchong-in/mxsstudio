@@ -63,8 +63,11 @@ const LegalOverlay: React.FC<LegalOverlayProps> = ({ isOpen, onClose }) => {
       </div>
 
       {/* Scrollable Content */}
-      <div className="flex-grow overflow-y-auto w-full flex justify-center custom-scrollbar">
-        <div ref={contentRef} className="w-full max-w-2xl px-6 py-12 md:py-20 opacity-0">
+      <div 
+        className="flex-grow overflow-y-auto w-full custom-scrollbar"
+        data-lenis-prevent
+      >
+        <div ref={contentRef} className="w-full max-w-2xl px-6 py-12 md:py-20 opacity-0 mx-auto">
           
           {SITE_CONTENT.legalOverlay.protocols.map((protocol, i) => (
              <div key={i} className="mb-16">

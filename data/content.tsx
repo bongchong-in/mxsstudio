@@ -115,11 +115,11 @@ export const SITE_CONTENT = {
     header: "Recent Commissions",
     cards: [
       {
-        title: "The Minimalist Poet",
-        author: "Arjun V.",
+        title: "Life Journaler",
+        author: "Aulpo Golpo",
         role: "Writer & Thinker",
         colorClass: "text-emerald-500",
-        image: "https://images.unsplash.com/photo-1471107340929-a87cd0f5b5f3?q=80&w=800&auto=format&fit=crop",
+        image: "https://raw.githubusercontent.com/bongchong-in/mxsstudio/refs/heads/main/images/aulpogolpo.jpg",
         code: (
           <>
             &lt;div class="hero"&gt;<br/>
@@ -132,11 +132,11 @@ export const SITE_CONTENT = {
         )
       },
       {
-        title: "Urban Kinetic",
-        author: "Sara K.",
-        role: "Movement Coach",
+        title: "Caught by Foods and Plants",
+        author: "Paromita",
+        role: "Cook and Gardener",
         colorClass: "text-sky-500",
-        image: "https://images.unsplash.com/photo-1486718448742-163732cd1544?q=80&w=800&auto=format&fit=crop",
+        image: "https://raw.githubusercontent.com/bongchong-in/mxsstudio/refs/heads/main/images/cbfp.jpg",
         code: (
           <>
             &lt;section id="booking"&gt;<br/>
@@ -210,7 +210,7 @@ export const SITE_CONTENT = {
           author: "David L.",
           role: "Podcaster",
           colorClass: "text-orange-500",
-          image: "https://images.unsplash.com/photo-1478737270239-2f02b77ac6d5?q=80&w=800&auto=format&fit=crop",
+          image: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=800&auto=format&fit=crop",
           code: (
             <>
               &lt;stream bitrate="320"&gt;<br/>
