@@ -1,15 +1,13 @@
 
 import React, { useState } from 'react';
-import { SITE_CONTENT } from '../../data/content';
-import VerificationModal from '../VerificationModal';
+import { SITE_CONTENT } from '../data/content';
+import VerificationModal from './VerificationModal';
 
 interface FooterProps {
     onOpenLegal: () => void;
-    onOpenAbout: () => void;
-    onOpenFAQ: () => void;
 }
 
-const Footer: React.FC<FooterProps> = ({ onOpenLegal, onOpenAbout, onOpenFAQ }) => {
+const Footer: React.FC<FooterProps> = ({ onOpenLegal }) => {
   const [requested, setRequested] = useState(false);
   const [handle, setHandle] = useState('');
   
@@ -104,17 +102,6 @@ const Footer: React.FC<FooterProps> = ({ onOpenLegal, onOpenAbout, onOpenFAQ }) 
             </div>
             
             <div className="flex flex-wrap gap-x-8 gap-y-4 font-mono text-xs">
-            
-            {/* Studio Link */}
-            <button onClick={onOpenAbout} className="text-void/70 hover:text-gold transition-colors hover-trigger">
-                Studio
-            </button>
-
-            {/* FAQ Link */}
-            <button onClick={onOpenFAQ} className="text-void/70 hover:text-gold transition-colors hover-trigger">
-                FAQ
-            </button>
-
             <a href={SITE_CONTENT.footer.links.concierge.url} target="_blank" rel="noreferrer" className="text-void/70 hover:text-green-600 transition-colors hover-trigger flex items-center gap-2">
                 <span className="text-[8px] opacity-50">●</span> {SITE_CONTENT.footer.links.concierge.text}
             </a>

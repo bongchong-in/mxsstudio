@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // Components
 import Navigation from './components/Navigation';
@@ -15,15 +15,17 @@ import Gallery from './components/Sections/Gallery';
 import Pricing from './components/Sections/Pricing';
 import Status from './components/Sections/Status';
 import Footer from './components/Sections/Footer';
-import About from './components/About';
 import LegalOverlay from './components/LegalOverlay';
+import AboutModal from './components/AboutModal';
+import FAQModal from './components/FAQModal';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isLegalOpen, setIsLegalOpen] = useState(false);
-  const [currentView, setCurrentView] = useState<'home' | 'about'>('home');
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [isFAQOpen, setIsFAQOpen] = useState(false);
   const lenisRef = useRef<Lenis | null>(null);
 
   // Initialize Lenis
@@ -73,28 +75,16 @@ const App: React.FC = () => {
     }
   }, [isLoading]);
 
-  // Handle Legal Overlay
+  // Handle Modal/Overlay State affecting Scroll
   useEffect(() => {
     if (lenisRef.current) {
-      if (isLegalOpen) {
+      if (isLegalOpen || isAboutOpen || isFAQOpen) {
         lenisRef.current.stop();
       } else if (!isLoading) {
         lenisRef.current.start();
       }
     }
-  }, [isLegalOpen, isLoading]);
-
-  // Handle View Change & Scroll Reset
-  useEffect(() => {
-    if (!isLoading && lenisRef.current) {
-       window.scrollTo(0,0);
-       // Small timeout to allow render
-       setTimeout(() => {
-         ScrollTrigger.refresh();
-         lenisRef.current?.resize();
-       }, 100);
-    }
-  }, [currentView, isLoading]);
+  }, [isLegalOpen, isAboutOpen, isFAQOpen, isLoading]);
 
   return (
     <>
@@ -103,26 +93,26 @@ const App: React.FC = () => {
       
       {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
       
-      {/* Global Legal Overlay */}
+      {/* Global Overlays */}
       <LegalOverlay isOpen={isLegalOpen} onClose={() => setIsLegalOpen(false)} />
+      <AboutModal isOpen={isAboutOpen} onClose={() => setIsAboutOpen(false)} />
+      <FAQModal isOpen={isFAQOpen} onClose={() => setIsFAQOpen(false)} />
 
-      <Navigation currentView={currentView} onViewChange={setCurrentView} />
+      <Navigation onOpenAbout={() => setIsAboutOpen(true)} />
 
       {/* Main Container */}
       <main className="w-full relative">
-        {currentView === 'home' ? (
-          <>
-            <Hero />
-            <Philosophy />
-            <Process />
-            <Gallery />
-            <Pricing />
-            <Status />
-            <Footer onOpenLegal={() => setIsLegalOpen(true)} />
-          </>
-        ) : (
-          <About onOpenLegal={() => setIsLegalOpen(true)} />
-        )}
+        <Hero />
+        <Philosophy />
+        <Process />
+        <Gallery />
+        <Pricing />
+        <Status />
+        <Footer 
+          onOpenLegal={() => setIsLegalOpen(true)} 
+          onOpenAbout={() => setIsAboutOpen(true)}
+          onOpenFAQ={() => setIsFAQOpen(true)}
+        />
       </main>
     </>
   );

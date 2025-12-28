@@ -1,7 +1,6 @@
-
 import React, { useEffect } from 'react';
 import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SITE_CONTENT } from '../../data/content';
 
 const Pricing: React.FC = () => {

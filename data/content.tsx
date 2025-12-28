@@ -87,9 +87,9 @@ export const SITE_CONTENT = {
   },
   navigation: {
     apply: "APPLY",
+    about: "STUDIO",
     scrollDown: "SCROLL ↓",
-    backToTop: "BACK TO TOP ↑",
-    studio: "THE STUDIO"
+    backToTop: "BACK TO TOP ↑"
   },
   hero: {
     line1: "WE DO NOT",
@@ -100,39 +100,115 @@ export const SITE_CONTENT = {
     title: "The Studio",
     subtitle: "A Gift Economy Initiative by Madhushree x Sumontro.",
     sections: [
-      {
-        id: "origin",
-        title: "The Origin",
-        content: [
-            "We are Madhushree and Sumontro, the husband-wife duo behind MxS Studio.",
-            "With a combined 30 years of experience across the Creative and Tech industries, we have built complex systems and designed for global brands. But after decades in the corporate sphere, we found ourselves looking for something deeper—meaning beyond the daily grind.",
-            "As a couple with no kids, we realized we had the time, the resources, and the skill to build something that wasn't driven by invoices or quarterly targets. We wanted to find purpose through our craft.",
-            "MxS Studio is our answer. It is a social impact project designed to connect us with the most talented creators in India, building a genuine network outside the transactional web."
-        ]
-      },
-      {
-        id: "rebellion",
-        title: "The Rebellion",
-        content: [
-            "We believe the current state of the creator economy is broken.",
-            "Creators are forced to \"rent\" their audience from algorithms or pay monthly subscriptions for generic, template-ridden tools just to have a link-in-bio. The internet has become a toll booth.",
-            "We are here to prove a point. We believe that High-End, Static, Maintenance-Free websites are the future. We believe that digital ownership shouldn't come with a monthly fee.",
-            "By gifting Bespoke Digital Homes to select creators, we are creating a network of proof—a symbiotic rebellion against the subscription model."
-        ]
-      },
-      {
-        id: "gift",
-        title: "The Gift Economy",
-        content: [
-            "We are a boutique laboratory, not a mass-market agency. We do not charge for our work (₹0).",
-            "We bank entirely on Goodwill.",
-            "We believe that if we use our 30 years of expertise to do exceptional work for the right people, our reputation grows with yours. That long-term legacy is worth far more to us than a one-time fee.",
-            "There are no hidden strings. We provide the architecture; you own the home.",
-            "If our work helps you claim your sovereignty, all we ask for in return is your voice—a shared story, a collaborative reel, or a simple recommendation to help us spread the message of the Gift Economy. But even that is an appreciation, never an obligation."
-        ]
-      }
+        {
+            heading: "The Origin",
+            text: [
+                "We are Madhushree and Sumontro, the husband-wife duo behind MxS Studio.",
+                "With a combined 30 years of experience across the Creative and Tech industries, we have built complex systems and designed for global brands. But after decades in the corporate sphere, we found ourselves looking for something deeper—meaning beyond the daily grind.",
+                "As a couple with no kids, we realized we had the time, the resources, and the skill to build something that wasn't driven by invoices or quarterly targets. We wanted to find purpose through our craft.",
+                "MxS Studio is our answer. It is a social impact project designed to connect us with the most talented creators in India, building a genuine network outside the transactional web."
+            ]
+        },
+        {
+            heading: "The Rebellion",
+            text: [
+                "We believe the current state of the creator economy is broken.",
+                "Creators are forced to \"rent\" their audience from algorithms or pay monthly subscriptions for generic, template-ridden tools just to have a link-in-bio. The internet has become a toll booth.",
+                "We are here to prove a point. We believe that High-End, Static, Maintenance-Free websites are the future. We believe that digital ownership shouldn't come with a monthly fee.",
+                "By gifting Bespoke Digital Homes to select creators, we are creating a network of proof—a symbiotic rebellion against the subscription model."
+            ]
+        },
+        {
+            heading: "The Gift Economy",
+            text: [
+                "We are a boutique laboratory, not a mass-market agency. We do not charge for our work (₹0).",
+                "We bank entirely on Goodwill.",
+                "We believe that if we use our 30 years of expertise to do exceptional work for the right people, our reputation grows with yours. That long-term legacy is worth far more to us than a one-time fee.",
+                "There are no hidden strings. We provide the architecture; you own the home.",
+                "If our work helps you claim your sovereignty, all we ask for in return is your voice—a shared story, a collaborative reel, or a simple recommendation to help us spread the message of the Gift Economy. But even that is an appreciation, never an obligation."
+            ]
+        }
     ],
-    philosophy: "\"We don't give you a tool; we give you a home.\""
+    philosophy: {
+        heading: "The Philosophy",
+        quote: "\"We don't give you a tool; we give you a home.\""
+    },
+    cta: "Join the Rebellion"
+  },
+  faq: {
+    title: "The Atelier FAQ",
+    subtitle: "Answers regarding The Gift Economy, Digital Sovereignty, and the MxS Process.",
+    sections: [
+        {
+            category: "I. The Philosophy (The \"Why\")",
+            items: [
+                {
+                    q: "Is this really free? What is the \"catch\"?",
+                    a: "There is no catch. There are no hidden fees, no monthly subscriptions, and no ads. We operate on a Gift Economy model. To be transparent about our motives: We are a husband-wife duo with 30 years of corporate experience. MxS Studio is our social impact project—a way to find purpose beyond the daily grind. We bank on Goodwill. If we do exceptional work for you, our reputation grows. We believe that legacy is worth more than a one-time invoice."
+                },
+                {
+                    q: "Do you own my data or my domain?",
+                    a: "Absolutely not. That would violate the principle of Sovereignty. The Code: You own it 100%. The Data: We do not track your visitors or sell your data. The Domain: You get a creator.edgentiq.com subdomain for free. If you prefer to buy your own custom domain, we will map it for you at no cost."
+                },
+                {
+                    q: "Why don't you just use templates like everyone else?",
+                    a: "Because you are an original, not a duplicate. Templates are bloated, slow, and generic. We believe in \"Digital Haute Couture.\" We hand-code every site using a modern tech stack to ensure it fits your specific aesthetic, loads instantly, and stands the test of time."
+                }
+            ]
+        },
+        {
+            category: "II. The Product (The \"What\")",
+            items: [
+                {
+                    q: "How is this different from Linktree or a Carrd site?",
+                    a: "Those are tools; this is a Home. No Rent: They charge monthly fees. We give you everything for ₹0. No Branding: They slap their logo on your page. We put your name front and center. Direct Connection: Our sites integrate Direct WhatsApp Triggers and UPI Payment Links natively, allowing you to bypass DMs and transact instantly."
+                },
+                {
+                    q: "What happens if MxS Studio closes down?",
+                    a: "No. This is the beauty of Static Architecture. Your site is built on a globally resilient, industry-standard infrastructure that is independent of our studio's private servers. Even if we stop operating, your site will remain live, fast, and secure indefinitely. You hold the keys."
+                },
+                {
+                    q: "Can I accept payments through the website?",
+                    a: "Yes, directly to your bank account via UPI. We do not use payment gateways that take a commission. When a client pays, 100% of the money goes straight to you. We never touch the transaction."
+                }
+            ]
+        },
+        {
+            category: "III. The Stewardship (The \"How\")",
+            items: [
+                {
+                    q: "I’m not tech-savvy. How much work do I have to do?",
+                    a: "Zero. Our model is Concierge Service. You don't need to learn a builder. You request an invitation, we study your content, we build the site, and we hand you the link. It is a \"One-Take\" philosophy designed to respect your time."
+                },
+                {
+                    q: "How do I update the website?",
+                    a: "You have a Stewardship Team (us). Minor Updates: Just email us. We handle the code update for you. The Annual Polish: Once a year, we proactively reach out to do a \"Digital Cleanup\" of your links and bio."
+                },
+                {
+                    q: "How long does the process take?",
+                    a: "Once you are selected for a batch, our turnaround time is typically 48 to 72 hours. We value momentum."
+                }
+            ]
+        },
+        {
+            category: "IV. The Eligibility (The \"Who\")",
+            items: [
+                {
+                    q: "Can I sell products (Clothing/Inventory) on this site?",
+                    a: "No. We specialize in Portfolios, Services, and Digital Assets. If you are a high-volume merchant with inventory, you need Shopify. We build Static Homes for Artists, Experts, Writers, and Consultants who sell their time, skill, or singular works."
+                },
+                {
+                    q: "How do I get selected?",
+                    a: "We operate by Invitation and Nomination. We look for: Originality (distinct voice), Aesthetic (content deserving a better canvas), and Need (creators restricted by link-in-bio tools)."
+                },
+                {
+                    q: "What do you expect in return?",
+                    a: "Nothing is required. However, if you love your new home, an announcement on your social media helps us spread the message of the Gift Economy. We consider it a Collaboration, not a transaction."
+                }
+            ]
+        }
+    ],
+    cta: "Ready to own your corner of the internet?"
   },
   philosophy: [
     {
