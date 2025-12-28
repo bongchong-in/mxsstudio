@@ -138,7 +138,7 @@ const FAQModal: React.FC<FAQModalProps> = ({ isOpen, onClose }) => {
                     onChange={(e) => setHandle(e.target.value)}
                     disabled={requested}
                     placeholder={inputPlaceholder} 
-                    className={`w-full bg-transparent border-b-2 border-void/20 md:border-code/30 py-4 md:py-6 text-sm sm:text-lg md:text-2xl lg:text-3xl font-serif focus:outline-none focus:border-gold transition-colors hover-trigger text-paper pr-0 md:pr-48 placeholder:transition-colors ${inputError ? 'placeholder-alert' : 'placeholder-code/20'}`} 
+                    className={`w-full bg-transparent border-b-2 border-void/20 md:border-code/30 py-4 md:py-6 text-sm sm:text-lg md:text-2xl lg:text-3xl font-serif focus:outline-none focus:border-gold transition-colors hover-trigger text-paper pr-0 md:pr-48 placeholder:transition-colors ${inputError ? 'placeholder-alert' : 'placeholder-code'}`} 
                     />
                     
                     <button 

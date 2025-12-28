@@ -57,18 +57,23 @@ const GalleryCard: React.FC<GalleryCardProps> = ({
       ref={cardRef as any}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`gallery-card relative w-[300px] h-[450px] md:w-[400px] md:h-[600px] max-h-[70vh] bg-white/5 border border-white/10 hover-trigger group transform-style-3d flex-shrink-0 flex flex-col justify-between overflow-hidden ${url ? 'cursor-pointer' : 'cursor-default'}`}
+      className={`gallery-card relative w-[300px] h-[450px] md:w-[400px] md:h-[600px] max-h-[70vh] bg-void border border-code/20 hover-trigger group transform-style-3d flex-shrink-0 flex flex-col justify-between overflow-hidden ${url ? 'cursor-pointer' : 'cursor-default'}`}
     >
-      {/* Background Image & Overlay */}
-      <div className="absolute inset-0 z-0 bg-black">
+      {/* Background Image & Architectural Overlays */}
+      <div className="absolute inset-0 z-0 bg-void">
         {image ? (
           <img 
             src={image} 
             alt={title} 
-            className="absolute inset-0 w-full h-full object-cover grayscale opacity-60 transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-80" 
+            className="absolute inset-0 w-full h-full object-cover grayscale opacity-40 transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-60" 
           />
         ) : null}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90" />
+        
+        {/* Top Gradient - Ensures Title Readability */}
+        <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-void via-void/80 to-transparent pointer-events-none" />
+
+        {/* Bottom Gradient - Ensures Author/Role Readability */}
+        <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-void via-void/95 to-transparent pointer-events-none" />
       </div>
 
       {/* Content */}
@@ -76,12 +81,12 @@ const GalleryCard: React.FC<GalleryCardProps> = ({
         
         {/* Top: Title/Status */}
         <div className="transform translate-y-0 transition-transform duration-500">
-           <div className="flex justify-between items-start">
-              <h3 className="font-serif italic text-2xl md:text-3xl text-white/90 drop-shadow-lg leading-tight max-w-[80%]">
+           <div className="flex justify-between items-start gap-4">
+              <h3 className="font-serif italic text-2xl md:text-3xl text-paper drop-shadow-md leading-tight max-w-[85%]">
                 {title}
               </h3>
               {url && (
-                <div className="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 -rotate-45 group-hover:rotate-0">
+                <div className="shrink-0 w-8 h-8 rounded-full border border-code/40 flex items-center justify-center opacity-50 group-hover:opacity-100 transition-all duration-300 -rotate-45 group-hover:rotate-0 bg-void/20 backdrop-blur-sm">
                   <span className="text-gold text-lg leading-none">↗</span>
                 </div>
               )}
@@ -91,11 +96,15 @@ const GalleryCard: React.FC<GalleryCardProps> = ({
         {/* Bottom: Author Info */}
         <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
           <div className="w-12 h-[1px] bg-gold mb-4 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 delay-100" />
-          <p className="font-serif text-xl text-paper group-hover:text-gold transition-colors">{author}</p>
-          <p className={`font-mono text-xs mt-1 ${colorClass} uppercase tracking-wider`}>{role}</p>
+          <p className="font-serif text-xl text-paper group-hover:text-gold transition-colors drop-shadow-md">{author}</p>
+          <div className="flex items-center gap-3 mt-2">
+            {/* Dot indicator matching the role color */}
+            <span className={`w-1.5 h-1.5 rounded-full ${colorClass.replace('text-', 'bg-')} shadow-[0_0_8px_currentColor]`}></span>
+            <p className={`font-mono text-xs ${colorClass} uppercase tracking-wider drop-shadow-sm`}>{role}</p>
+          </div>
           
           {!url && (
-            <p className="font-mono text-[10px] text-white/30 mt-4 uppercase tracking-widest">In Progress</p>
+            <p className="font-mono text-[10px] text-code/60 mt-4 uppercase tracking-widest border border-code/20 inline-block px-2 py-1 rounded bg-void/30 backdrop-blur-sm">In Progress</p>
           )}
         </div>
       </div>
