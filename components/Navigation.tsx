@@ -1,7 +1,13 @@
+
 import React, { useState, useEffect } from 'react';
 import { SITE_CONTENT } from '../data/content';
 
-const Navigation: React.FC = () => {
+interface NavigationProps {
+  currentView: 'home' | 'about';
+  onViewChange: (view: 'home' | 'about') => void;
+}
+
+const Navigation: React.FC<NavigationProps> = ({ currentView, onViewChange }) => {
   const [isAtBottom, setIsAtBottom] = useState(false);
 
   const scrollToTop = () => {
@@ -34,12 +40,31 @@ const Navigation: React.FC = () => {
 
   return (
     <nav className="fixed inset-0 pointer-events-none z-50 block mix-blend-difference text-paper">
-      {/* Top Left - Logo */}
+      {/* Top Left - Logo (Home) */}
       <div 
-        onClick={scrollToTop}
-        className="absolute top-4 left-4 md:top-6 md:left-6 font-mono text-sm pointer-events-auto hover-trigger cursor-none select-none"
+        onClick={() => {
+            onViewChange('home');
+            scrollToTop();
+        }}
+        className={`absolute top-4 left-4 md:top-6 md:left-6 font-mono text-sm pointer-events-auto hover-trigger cursor-pointer select-none transition-colors ${currentView === 'home' ? 'text-gold' : 'text-paper hover:text-gold'}`}
       >
         {SITE_CONTENT.general.logo}
+      </div>
+
+      {/* Top Center-Left - Studio Link */}
+      <div 
+        onClick={() => {
+            if (currentView === 'home') {
+                onViewChange('about');
+                scrollToTop();
+            } else {
+                onViewChange('home');
+                scrollToTop();
+            }
+        }}
+        className={`absolute top-4 left-20 md:top-6 md:left-24 font-mono text-sm pointer-events-auto hover-trigger cursor-pointer uppercase tracking-widest transition-colors select-none ${currentView === 'about' ? 'text-gold line-through' : 'text-paper hover:text-gold'}`}
+      >
+        {SITE_CONTENT.navigation.studio}
       </div>
 
       {/* Top Right - Action */}

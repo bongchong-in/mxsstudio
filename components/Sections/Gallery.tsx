@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 import { SITE_CONTENT } from '../../data/content';
 
 // Define interface for GalleryCard props to ensure type safety

@@ -1,7 +1,8 @@
+
 import React, { useEffect, useState, useRef } from 'react';
 import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
 // Components
 import Navigation from './components/Navigation';
@@ -14,6 +15,7 @@ import Gallery from './components/Sections/Gallery';
 import Pricing from './components/Sections/Pricing';
 import Status from './components/Sections/Status';
 import Footer from './components/Sections/Footer';
+import About from './components/About';
 import LegalOverlay from './components/LegalOverlay';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -21,6 +23,7 @@ gsap.registerPlugin(ScrollTrigger);
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isLegalOpen, setIsLegalOpen] = useState(false);
+  const [currentView, setCurrentView] = useState<'home' | 'about'>('home');
   const lenisRef = useRef<Lenis | null>(null);
 
   // Initialize Lenis
@@ -81,6 +84,18 @@ const App: React.FC = () => {
     }
   }, [isLegalOpen, isLoading]);
 
+  // Handle View Change & Scroll Reset
+  useEffect(() => {
+    if (!isLoading && lenisRef.current) {
+       window.scrollTo(0,0);
+       // Small timeout to allow render
+       setTimeout(() => {
+         ScrollTrigger.refresh();
+         lenisRef.current?.resize();
+       }, 100);
+    }
+  }, [currentView, isLoading]);
+
   return (
     <>
       <Cursor />
@@ -91,17 +106,23 @@ const App: React.FC = () => {
       {/* Global Legal Overlay */}
       <LegalOverlay isOpen={isLegalOpen} onClose={() => setIsLegalOpen(false)} />
 
-      <Navigation />
+      <Navigation currentView={currentView} onViewChange={setCurrentView} />
 
-      {/* Main Container - removed manual overflow control to rely on body/Lenis */}
+      {/* Main Container */}
       <main className="w-full relative">
-        <Hero />
-        <Philosophy />
-        <Process />
-        <Gallery />
-        <Pricing />
-        <Status />
-        <Footer onOpenLegal={() => setIsLegalOpen(true)} />
+        {currentView === 'home' ? (
+          <>
+            <Hero />
+            <Philosophy />
+            <Process />
+            <Gallery />
+            <Pricing />
+            <Status />
+            <Footer onOpenLegal={() => setIsLegalOpen(true)} />
+          </>
+        ) : (
+          <About onOpenLegal={() => setIsLegalOpen(true)} />
+        )}
       </main>
     </>
   );

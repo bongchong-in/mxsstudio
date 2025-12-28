@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 export const COUNTRIES = [
@@ -87,12 +88,51 @@ export const SITE_CONTENT = {
   navigation: {
     apply: "APPLY",
     scrollDown: "SCROLL ↓",
-    backToTop: "BACK TO TOP ↑"
+    backToTop: "BACK TO TOP ↑",
+    studio: "THE STUDIO"
   },
   hero: {
     line1: "WE DO NOT",
     line2: "BUILD WEBSITES",
     subtext: "We Architect Digital Homes"
+  },
+  about: {
+    title: "The Studio",
+    subtitle: "A Gift Economy Initiative by Madhushree x Sumontro.",
+    sections: [
+      {
+        id: "origin",
+        title: "The Origin",
+        content: [
+            "We are Madhushree and Sumontro, the husband-wife duo behind MxS Studio.",
+            "With a combined 30 years of experience across the Creative and Tech industries, we have built complex systems and designed for global brands. But after decades in the corporate sphere, we found ourselves looking for something deeper—meaning beyond the daily grind.",
+            "As a couple with no kids, we realized we had the time, the resources, and the skill to build something that wasn't driven by invoices or quarterly targets. We wanted to find purpose through our craft.",
+            "MxS Studio is our answer. It is a social impact project designed to connect us with the most talented creators in India, building a genuine network outside the transactional web."
+        ]
+      },
+      {
+        id: "rebellion",
+        title: "The Rebellion",
+        content: [
+            "We believe the current state of the creator economy is broken.",
+            "Creators are forced to \"rent\" their audience from algorithms or pay monthly subscriptions for generic, template-ridden tools just to have a link-in-bio. The internet has become a toll booth.",
+            "We are here to prove a point. We believe that High-End, Static, Maintenance-Free websites are the future. We believe that digital ownership shouldn't come with a monthly fee.",
+            "By gifting Bespoke Digital Homes to select creators, we are creating a network of proof—a symbiotic rebellion against the subscription model."
+        ]
+      },
+      {
+        id: "gift",
+        title: "The Gift Economy",
+        content: [
+            "We are a boutique laboratory, not a mass-market agency. We do not charge for our work (₹0).",
+            "We bank entirely on Goodwill.",
+            "We believe that if we use our 30 years of expertise to do exceptional work for the right people, our reputation grows with yours. That long-term legacy is worth far more to us than a one-time fee.",
+            "There are no hidden strings. We provide the architecture; you own the home.",
+            "If our work helps you claim your sovereignty, all we ask for in return is your voice—a shared story, a collaborative reel, or a simple recommendation to help us spread the message of the Gift Economy. But even that is an appreciation, never an obligation."
+        ]
+      }
+    ],
+    philosophy: "\"We don't give you a tool; we give you a home.\""
   },
   philosophy: [
     {
@@ -149,6 +189,38 @@ export const SITE_CONTENT = {
         colorClass: "text-sky-500",
         image: "https://raw.githubusercontent.com/bongchong-in/mxsstudio/refs/heads/main/images/cbfp.jpg",
         url: "https://paromita.edgentiq.com/"
+      },
+      {
+        title: "Spontaneous Artist",
+        author: "Mukesh Tiwari",
+        role: "Painter",
+        colorClass: "text-amber-500",
+        image: "https://raw.githubusercontent.com/bongchong-in/mxsstudio/refs/heads/main/images/mukeshtiwari.jpg",
+        url: "https://mukeshtiwari.edgentiq.com/"
+      },
+      {
+        title: "Isekai Anime",
+        author: "Rahul Vaishnaw",
+        role: "Author",
+        colorClass: "text-violet-500",
+        image: "https://raw.githubusercontent.com/bongchong-in/mxsstudio/refs/heads/main/images/rahulvaishnaw.jpg",
+        url: "https://rahulvaishnaw.edgentiq.com/"
+      },
+      {
+        title: "Commercial Kitchen",
+        author: "Triune",
+        role: "B2B",
+        colorClass: "text-stone-400",
+        image: "https://raw.githubusercontent.com/bongchong-in/mxsstudio/refs/heads/main/images/triune.jpg",
+        url: "https://triunekitchen.edgentiq.com/"
+      },
+      {
+        title: "Kid in style",
+        author: "Reyansh",
+        role: "Kidfluencer",
+        colorClass: "text-cyan-500",
+        image: "https://raw.githubusercontent.com/bongchong-in/mxsstudio/refs/heads/main/images/footprints.jpg",
+        url: "https://reyansh.edgentiq.com/"
       },
       {
         title: "Sonic Architect",
